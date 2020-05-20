@@ -17,7 +17,7 @@ function isSubsequence(strRef, strParse) {
         // <= as some letters could repeat
         if ( objParse[strParse[key1]] <= objRef[strParse[key1]] ) {
             // only if value of each string match -> delete the objRef element
-            objParse[strParse[key1]] == objRef[strParse[key1]] 
+            objParse[strParse[key1]] === objRef[strParse[key1]] 
                 ? (delete objRef[strParse[key1]],  cont ++)
                 : cont ++ ;
         }
