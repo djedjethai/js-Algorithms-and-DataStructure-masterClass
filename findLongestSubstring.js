@@ -1,60 +1,57 @@
 function findLongestSubstring(str){
 
-let left = 0;
-let right = 1;
-let done = false;
-
-// obj stock val 
-let obj = {};
-// obj[left] = str[left];
-
-// cout max nbr char 
-let cont = 0;
-
-// if 1 char => end
-while (done != true) {
+    let left = 0;
+    let right = 1;
+    let done = false;
     
-    if (str[left] == str[right]) {
-        left++;
-        right++;
-    } else {
-        done = true;
+    let obj = {};
+    
+    // in case some char are repeating at the beginning
+    while (done != true) {
+        
+        if (str[left] == str[right]) {
+            left++;
+            right++;
+        } else {
+            done = true;
+        }
+    
     }
-
-}
-
-done = false;
-obj[0] = str[left];
-left = 0;
-
-while (done != true) {
-
-    if (obj[left] != str[right]) {
-        right++;
-        cont++
-    } 
-    // !!! in case right is the same......
-    else if (obj[left] === str[right]) {
-        left++;
-        right++;
+    
+    let cont = 1;
+    let i = left;
+    obj[str[left]] = 1;
+    
+    console.log(Object.keys(str).length - (left + 1)); // ?????
+    
+    // loop, a affiner................
+    for (let y = 0; y < Object.keys(str).length - (left + 1); y++) {
+        // parse char into obj
+        if (!obj[str[right]]) {
+            console.log('right');    
+            console.log(right);
+            obj[str[right]] = 1;
+            right++;
+            cont++;
+            // console.log(cont);
+        // if (obj[str[right]]) decale right until match (left ref is the str obj) && add char to the obj[char] = 1;
+        } else {
+    
+        // match parse left of the left of the str then obj[left] = 0 && decale left de 1 
+            for (let i; i <= left; i++) {
+                console.log('one');    
+                obj[str[i]] = 0;
+                cont--;
+            }
+            i = left;
+            left++;
+        }
+    
     }
-
-}
-
-
-
-
-
-return left;
-
-// if val presente del val presente and move crsor left to right
-
-
-// curs right carry on
-
-
-// curs right reach last char => end
-
-}
-
-console.log(findLongestSubstring('ttttttest'));
+    
+    return cont;
+    
+    }
+    
+    // console.log(findLongestSubstring('ttttttestttt'));
+    console.log(findLongestSubstring('greenav'));
