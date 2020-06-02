@@ -19,10 +19,13 @@ function findLongestSubstring(str){
     }
     
     let cont = 1;
-    let i = left;
+    
     obj[str[left]] = 1;
     
-    console.log(Object.keys(str).length - (left + 1)); // ?????
+    console.log('left start');
+    console.log(left);
+    console.log('right start');
+    console.log(right);
     
     // loop, a affiner................
     for (let y = 0; y < Object.keys(str).length - (left + 1); y++) {
@@ -35,15 +38,35 @@ function findLongestSubstring(str){
             cont++;
             // console.log(cont);
         // if (obj[str[right]]) decale right until match (left ref is the str obj) && add char to the obj[char] = 1;
-        } else {
+        } else if (str[left] != str[right]) {
+            
+            let i = left + 1;
+            let done = false;
+            console.log('tamere la pute')
+            console.log(str[right]);
     
-        // match parse left of the left of the str then obj[left] = 0 && decale left de 1 
-            for (let i; i <= left; i++) {
-                console.log('one');    
-                obj[str[i]] = 0;
-                cont--;
+            while (done = false) {
+                if (str[i] === str[right]) {
+                    for (left; left = i; left++) {
+                        console.log('first -');
+                        obj[str[left]] = 0;
+                        cont--;
+                    }
+                    done = true;
+                } else {
+                    i++;
+                }
             }
-            i = left;
+           
+        } else if (str[left] === str[right]) {
+    
+            console.log('lamerde');
+            console.log(str[left]);
+            console.log(str[right]);
+            
+            console.log('second -');
+            obj[str[left]] = 0;
+            cont--;
             left++;
         }
     
@@ -54,4 +77,5 @@ function findLongestSubstring(str){
     }
     
     // console.log(findLongestSubstring('ttttttestttt'));
-    console.log(findLongestSubstring('greenav'));
+    // console.log(findLongestSubstring('greenav'));
+    console.log(findLongestSubstring('cesttamanger'));
