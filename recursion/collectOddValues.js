@@ -11,7 +11,6 @@ function collectOddValues(arr) {
         }
         helper(helperArr.slice(1));
     }
-
     helper(arr);
 
     return results
