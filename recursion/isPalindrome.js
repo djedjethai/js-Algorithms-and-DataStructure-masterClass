@@ -4,19 +4,26 @@
 // isPalindrome('amanaplanacanalpanama') // true
 // isPalindrome('amanaplanacanalpandemonium') // false
 
+// solution refactorise
+// function isPalindrome(str){
+//     if(str.length === 1) return true;
+//     if(str.length === 2) return str[0] === str[1];
+//     if(str[0] === str.slice(-1)) return isPalindrome(str.slice(1,-1))
+//     return false;
+// }
+
+
 function isPalindrome(str){
-  // add whatever parameters you deem necessary - good luck!
+    if(str.length === 1) return true;
 
-	// does number impaire
-	if (str % 0) return false;
-	// the stop recursion is at half obj floor()
-	if (str.length === Math.floor(str/2)) {
-		return false;
-	}
-	// then recursive return
-	isPalindrome(str.slice()) // voir reverse.....
-	// compare each recursive return with each leaving elmt 
-	// if no match return false => end
+    if(str.length === 2) {
+	    return str[0] === str[1];
+    }
 
+    if(str[0] === str.slice(-1)) {
+	    return isPalindrome(str.slice(1,-1))
+    }
 
+    return false;
 }
+
