@@ -1,4 +1,21 @@
-// my solution
+// solution du prof
+function insertionSort(arr){
+	var currentVal;
+    for(var i = 1; i < arr.length; i++){
+        currentVal = arr[i];
+        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+            arr[j+1] = arr[j]
+        }
+        arr[j+1] = currentVal;
+    }
+    return arr;
+}
+
+const arr = [-4, 7, 12,0, -6, 56, -45, 23]
+
+console.log(insertionSort(arr))
+
+// my solution, works but really not optimized
 // function insertionSort(arr){
 // 	for(let i=0; i < arr.length; i++){
 // 		for(let j = (i===0?i+1:i); j >= 0; j-- ){
@@ -37,19 +54,4 @@
 // 	return arr
 // }
 
-// solution du prof
-function insertionSort(arr){
-	var currentVal;
-    for(var i = 1; i < arr.length; i++){
-        currentVal = arr[i];
-        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
-            arr[j+1] = arr[j]
-        }
-        arr[j+1] = currentVal;
-    }
-    return arr;
-}
 
-const arr = [-4, 7, 12,0, -6, 56, -45, 23]
-
-console.log(insertionSort(arr))

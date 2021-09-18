@@ -1,5 +1,8 @@
 // const arr = [-2,3,1,-32,45,0,-4, 7]
 const arr = [-2,3,1,-32,45,0,-4, 7, 5, 43,-8,100,-23,-67, 78,90]
+// const arr = [-7,-2,3,1,-32,45,0,-4, 7, 5, 43,-8,100,-23,-67, 78,90]
+// const arr = [3,1,-4]
+// const arr = [3,1]
 
 function swap(a){
 	if(a[0] > a[1]){
@@ -13,25 +16,51 @@ function swap(a){
 }
 
 
+
 function mergeSort(arr){
 	const refArrLgt = arr.length
 	let final = []
 
 	function divise(arr){
-		let newLgt = (arr.length -1)/2
+		let newLgt = Math.floor((arr.length -1)/2)
 		let first = arr.slice(0, newLgt+1)
 		let second = arr.slice(newLgt +1)
-	
-		if(first.length <=2 && second.length <=2 ){
-	
-			swap(first)
-			swap(second)
 
+		if(arr.length == 2){
+			return swap(arr)
+		}
+
+		if(first.length > 0 && first.length < 3 && second.length > 0 && second.length < 3){
+						
+			// base(first, second, final)
+			if(first.length === 2 && second.length === 2) {
+				swap(first)
+				swap(second)
+			}
+			else if(second.length === 2){
+				swap(second)
+			}
+			else {
+				swap(first)
+			}
 			final.push(mergeArray(first, second))	
-		} else {
+		}
+		else{
 			divise(first)
 			divise(second)
 		}
+
+			
+		// if(first.length <=2 && second.length <=2 ){
+	
+		// 	swap(first)
+		// 	swap(second)
+
+		// 	final.push(mergeArray(first, second))	
+		// } else {
+		// 	divise(first)
+		// 	divise(second)
+		// }
 
 		return final
 	}
