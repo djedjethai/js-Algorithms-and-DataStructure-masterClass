@@ -70,9 +70,9 @@ class SinglyLinkedList {
 	shift(){
 		if(!this.head) return undefined	
 		let toReturn = this.head
-		this.length--
 		this.head = toReturn.next
 		toReturn.next = null
+		this.length--
 		if(this.length < 1) this.tail = null
 
 		return toReturn
@@ -85,13 +85,26 @@ class SinglyLinkedList {
 			this.tail = newNode
 		}
 		else {
-			const previousHead = this.head
+			newNode.next = this.head
 			this.head = newNode
-			this.head.next = previousHead
 		}
 		this.length++
 		
 		return this
+	}
+
+	get(index) {
+		if(this.length < index) return undefined
+		let nodeRef = this.head
+		let i = 0
+		while( i < index ){
+			nodeRef = nodeRef.next
+			i++
+		}
+		let newObj = Object.assign({}, nodeRef)
+		if(newObj.next) newObj.next = null
+
+		return newObj
 	}
 
 	getTail(){
@@ -115,11 +128,24 @@ sll.getTail()
 sll.testNode()
 console.log("=================")
 
-console.log(sll.shift())
+console.log("get1: ", sll.get(0))
+console.log("get2: ", sll.get(1))
+console.log("get2: ", sll.get(2))
+console.log("get2: ", sll.get(10))
 
-sll.push(100)
 
-console.log(sll.pop())
+// console.log(sll.shift())
+// console.log(sll.shift())
+// console.log(sll.shift())
+
+
+
+// console.log(sll.unshift(44))
+// console.log(sll.unshift(55))
+
+// sll.push(100)
+
+// console.log(sll.pop())
 
 sll.getTail()
 sll.testNode()
