@@ -158,10 +158,10 @@ sll.push(567)
 
 // sll.getNode()
 
-sll.getTail()
-sll.testNode()
-console.log("=================")
-
+// sll.getTail()
+// sll.testNode()
+// console.log("=================")
+// 
 console.log(sll.reverse())
 
 // console.log("set1: ", sll.get(-5))
