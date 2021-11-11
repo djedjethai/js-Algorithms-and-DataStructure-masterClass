@@ -27,13 +27,68 @@ class DoublyLinkedList {
 		
 		return this
 	}	
+
+	pop(){
+		if(this.length === 0) return undefined
+		let toReturn = this.tail
+		if(this.length > 1){
+			this.tail = toReturn.prev
+			this.tail.next = null
+			toReturn.prev = null
+		} else if(this.length === 1) {
+			this.tail = null
+			this.head = null
+		}
+		this.length--
+
+		return toReturn
+	}
+
+	shift(){
+		if(this.length === 0) return undefined
+		let toReturn = this.head
+		if(this.length === 1){
+			this.head = null
+			this.tail = null
+		} else if(this.length > 1){
+			this.head = toReturn.next
+			this.head.prev = null
+			toReturn.next = null
+		}
+		this.length--
+
+		return toReturn
+	}
+
+	unshift(val){
+		const newHead = new Node(val)
+		if(this.length === 0){
+			this.head = newHead
+			this.tail = newHead
+		}else {
+			this.head.prev = newHead 
+			newHead.next = this.head
+			this.head = newHead
+		}
+		this.length++
+		return this
+	}
+
+	getHead(){
+		return this.head
+	}
 }
 
 const dl = new DoublyLinkedList()
-console.log("1: ", dl.push(1))
-console.log("2: ", dl.push(2))
-console.log("3: ", dl.push(3))
-console.log("4: ", dl.push(4))
+//console.log("1: ", dl.push(1))
+// console.log("2: ", dl.push(2))
+// console.log("3: ", dl.push(3))
+ 
+console.log("u3: ", dl.unshift(3))
+console.log("u2: ", dl.unshift(2))
+console.log("u1: ", dl.unshift(1))
+
+console.log(dl.getHead())
 
 
 
