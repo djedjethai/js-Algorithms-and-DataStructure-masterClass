@@ -74,6 +74,35 @@ class DoublyLinkedList {
 		return this
 	}
 
+	get(index) {
+		if(this.length === 0) return undefined
+		if(index === 0) return this.shift()
+		if(index === this.length - 1) return this.pop()
+
+		let i = 0
+		let node = this.head
+		if(index <= this.length / 2 || index === 0){
+			// start from head
+			while(i <= index){
+				// console.log("node: ", node)
+				if(i === index){
+					let nextNode = node.next
+					let prevNode = node.prev
+					nextNode.prev = prevNode
+					prevNode.next = nextNode
+					return node.val
+				}	
+				node = node.next
+				i++
+			}
+			
+		} else {
+			// start from tail
+			// implemment here
+			console.log("in else")
+		}
+	}
+
 	getHead(){
 		return this.head
 	}
@@ -84,11 +113,15 @@ const dl = new DoublyLinkedList()
 // console.log("2: ", dl.push(2))
 // console.log("3: ", dl.push(3))
  
-console.log("u3: ", dl.unshift(3))
-console.log("u2: ", dl.unshift(2))
-console.log("u1: ", dl.unshift(1))
+dl.push(1)
+dl.push(2)
+dl.push(3)
+dl.push(4)
+dl.push(5)
 
-console.log(dl.getHead())
+console.log(dl.get(2))
+
+console.log("get Head: ", dl.getHead())
 
 
 
