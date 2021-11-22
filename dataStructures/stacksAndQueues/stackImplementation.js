@@ -1,3 +1,4 @@
+// my Implementation, better 
 class Elt{
 	constructor(val){
 		this.val = val
