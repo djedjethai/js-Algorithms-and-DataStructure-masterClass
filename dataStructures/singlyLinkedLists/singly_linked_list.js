@@ -19,8 +19,12 @@ class SinglyLinkedList {
 			this.tail = newNode
 		}
 		else {
+			console.log("test1: ", this.head)
+			console.log("test1b: ", this.tail)
 			this.tail.next = newNode
 			this.tail = newNode
+			console.log("test2: ", this.head)
+			console.log("test2b: ", this.tail)
 		}
 		this.length++
 		
@@ -156,33 +160,9 @@ sll.push(23)
 sll.push(567)
 // sll.push(11)
 
-// sll.getNode()
-
-// sll.getTail()
-// sll.testNode()
-// console.log("=================")
-// 
-console.log(sll.reverse())
-
-// console.log("set1: ", sll.get(-5))
-
-
-// console.log(sll.shift())
-// console.log(sll.shift())
-// console.log(sll.shift())
-
-
-
-// console.log(sll.unshift(44))
-// console.log(sll.unshift(55))
-
-// sll.push(100)
-
-// console.log(sll.pop())
-
 sll.getTail()
-sll.testNode()
 
+sll.testNode()
 
 
 // var first = new Node("hi")
