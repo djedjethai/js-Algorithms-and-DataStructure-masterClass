@@ -19,31 +19,35 @@ class Heaps{
 			}
 		}
 
-		if(this.tree[0] < val) return this.tree.unshift(val)
 		if(this.tree[this.tree.length - 1] > val) return this.tree.push(val)
 
-		console.log("start: ", this.tree)
-
+		let temp
+		let ok = 0
 		let indexSwitch
+		let indexLow
 		let parentIndex = this.tree.length - 1
 		let parentVal = this.tree[parentIndex]
-			console.log("passIndexST: ", parentIndex)
-			console.log("passValST: ", parentVal)
 
-		while(parentVal < val){
+		while(parentVal < val && parentIndex !== undefined){
+			if(ok > 0){ indexLow = indexSwitch }
+			ok++
 			indexSwitch = parentIndex
-			console.log("passIndex: ", parentIndex)
-			console.log("passVal: ", parentVal)
 			parentIndex = Math.floor((parentIndex - 1) / 2)
 			parentVal = this.tree[parentIndex]
+
+			// switch 
+			temp = this.tree[indexSwitch]
+			if(ok === 1) {
+				this.tree[indexSwitch] = val		
+				this.tree.push(temp)
+			} else {	
+				this.tree[indexSwitch] = this.tree[indexLow]
+				this.tree[indexLow] = temp
+			}
 		}
-		let temp = this.tree[indexSwitch]
-		this.tree[indexSwitch] = val
-		this.tree.push(temp)
+		
 		return 
 	
-		console.log("parentIndex: ", parentIndex)
-		console.log("parentVal: ", parentVal)
 	}
 
 	getTree(){
