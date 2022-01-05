@@ -1,9 +1,10 @@
 
 class Heaps{
 	constructor(){
-		this.tree = [10, 8,7, 5, 3]
+		this.tree = []
 	}
 
+	// my solution, kind of long......
 	insert(val){
 		if(this.tree.length < 1 ){
 			return this.tree.push(val)
@@ -53,14 +54,78 @@ class Heaps{
 	getTree(){
 		console.log(this.tree)
 	}
+
+	extractMax(){
+		const max = this.tree[0]
+		const end = this.tree.pop()
+		if(this.tree.length > 0){
+			this.tree[0] = end
+			this.sinkDown()
+		}
+		return max
+	}
+
+	sinkDown(){
+		let idx = 0;
+		const length = this.tree.length
+		const element = this.tree[0]
+		while(true){
+			let leftChildIdx = 2 * idx + 1
+			let rightChildIdx = 2 * idx + 2
+			let leftChild, rightChild
+			let swap = null
+
+			if(leftChildIdx < length){
+				leftChild = this.tree[leftChildIdx]
+				if(leftChild > element){
+					swap = leftChildIdx
+				}
+			}
+			if(rightChildIdx < length){
+				rightChild = this.tree[rightChildIdx]
+				if(
+				(swap === null && rightChild > element) || 
+				(swap !== null && rightChild > leftChild)
+				){
+					swap = rightChildIdx
+				}
+			}
+			if(swap === null) break
+			this.tree[idx] =  this.tree[swap]
+			this.tree[swap] = element
+			idx = swap
+		}
+	}
+
 }
 
 let h = new Heaps()
 
-h.insert(6)
-h.insert(24)
-h.insert(13)
-h.insert(4)
-h.insert(23)
+h.insert(41)
+h.insert(39)
+h.insert(33)
+h.insert(18)
+h.insert(27)
+h.insert(12)
+h.insert(55)
+
+h.getTree()
+
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+console.log("grrr: ", h.extractMax())
+
+h.getTree()
+
+h.insert(10)
+h.insert(99)
 
 h.getTree()
