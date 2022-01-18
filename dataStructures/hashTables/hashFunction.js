@@ -14,6 +14,9 @@ class HashTable{
 		return total
 	}
 
+	// set() is not really efficient as duplicate keys should overwrite the previous one
+	// instead here it just add them, and in get() we will get the first one
+	// which actually should be more logic to get the last one...
 	set(key, value){
 		const hash = this._hash(key)
 		const keyValArr = [key, value]
@@ -35,10 +38,47 @@ class HashTable{
 		// else if(this.keyMap[hash].length > 0) { return this.keyMap[hash][0] } 
 		else return undefined
 	}
+
+	keys(){
+		const keys = []
+		for(let i=0; i < this.keyMap.length; i++){
+			if(this.keyMap[i]){
+				for(let y=0; y < this.keyMap[i].length; y++){
+					let exist = false
+					for(let z=0; z < keys.length; z++){
+						if(this.keyMap[i][y][0] === keys[z]) exist = true
+					}
+					if(!exist) keys.push(this.keyMap[i][y][0])
+
+				}
+			}
+		}
+
+		return keys
+	}
+
+	// with the build-in method include(), same as with for loop	
+	values(){
+		const values = []
+		for(let i=0; i < this.keyMap.length; i++){
+			if(this.keyMap[i]){
+				for(let y=0; y < this.keyMap[i].length; y++){
+					if(!values.includes(this.keyMap[i][y][1])){ 
+						values.push(this.keyMap[i][y][1])
+					}
+				}
+			}
+		}
+
+		return values
+	}
+
 }
 
 const ht = new HashTable()
 let res = ht.set("maroon", "harru")
+res = ht.set("yellow", "yel")
+res = ht.set("yellow", "yel")
 res = ht.set("yellow", "yel")
 
 res = ht.set("larry", "susu")
@@ -47,7 +87,8 @@ console.log(ht.get('maroon'))
 console.log(ht.get('larry'))
 console.log(ht.get('yellow'))
 
-
+console.log(ht.keys())
+console.log(ht.values())
 
 
 
