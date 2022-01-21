@@ -1,4 +1,3 @@
-
 class Graph{
 	constructor(){
 		this.adjacencyList = {}
@@ -89,5 +88,4 @@ gr.removeVertex("new-York")
 
 gr.get()
 // gr.removeEdges("new-York", "test")
-
 
