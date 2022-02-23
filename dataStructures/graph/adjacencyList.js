@@ -59,44 +59,73 @@ class Graph{
 			delete this.adjacencyList[vertex]
 		}
 	}
-	// my solution
-	// removeVertex(vertex){
-	// 	for(let key in this.adjacencyList){
-	// 		if(key === vertex) delete this.adjacencyList[key]
-	// 		else this.adjacencyList[key] = this.adjacencyList[key].filter(v => v != vertex)
-	// 	}
-	// 	
-	// }
 
+	// works but oder "depth" is not perfect(see prof correction)
+	depthFirstIterative(start){
+		const visited = {}
+		const vert = []
+	
+		let datasLgt = Object.keys(this.adjacencyList).length
 
-	getVertexes(start){
-		
+		if(datasLgt < 1) return vert
+
+		while(vert.length < datasLgt){
+			this.adjacencyList[start].forEach(child => {
+				if(!visited[child]){
+					visited[child] = true
+					vert.push(child)
+					start = child
+				}
+			})
+		}
+
+		return vert
+	}
+
+	// works but oder "depth" is not perfect(see prof correction)
+	depthFirstRecursive(start){		
 		const visited = {}
 		const vert = []
 	
 		let datas = Object.keys(this.adjacencyList).length
 		let origin = this.adjacencyList
 
-		// console.log("dts start: ", datas)
-
-		function recurse(start, origin, datas, vert){
-			// start a => itere add elem to visited
+		function recurse(start){
 			for(let i = 0; i < origin[start].length; i++){	
-				// console.log("in i: ", origin[start][i])
-				if(datas === vert.length){
-					// console.log("bf ret:", vert)
-					return vert
-				} else if(!visited[origin[start][i]]){
-					// console.log("visited: ", visited)
-					// console.log("element: ", vert)
+				if(datas === vert.length) return vert
+				else if(!visited[origin[start][i]]){
 					visited[origin[start][i]] = true
 					vert.push(origin[start][i])
-					recurse(origin[start][i], origin, datas, vert)
+					recurse(origin[start][i])
 				} 
 			}
 		}
+		
+		if(datas < 1) return vert
+		else return recurse(start)
+	}
 
-		return recurse(start, origin, datas, vert)
+
+	breadthFirst(start){
+		const visited = {}
+		const queue = []
+		const vert = []
+		let current
+
+		queue.push(start)
+		visited[start] = true
+		while(queue.length > 0){
+			current = queue.shift()
+			vert.push(current)
+			this.adjacencyList[current].forEach(child => { 
+				if(!visited[child]){
+					visited[child] = true
+					queue.push(child)
+				}
+			})
+		}
+
+		return vert
 	}
 
 	get(){
@@ -123,7 +152,7 @@ gr.addEdges("e", "f")
 gr.get()
 
 // get all vertex
-console.log(gr.getVertexes("a"))
+console.log(gr.breadthFirst("a"))
 
 // gr.removeEdges("new-York", "test")
 
